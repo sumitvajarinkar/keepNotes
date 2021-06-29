@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors');
+const path = require('path')
 const loginRouter = require('./Routes/apis/googleSigninRoute')
 const port = process.env.PORT||5000
 const app =express();
