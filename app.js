@@ -21,6 +21,20 @@ app.use(cors())
 
 //routes
 app.use('/googlelogin',loginRouter)
+app.use(express.static(path.join(__dirname, './frontend/build')))
+if(process.env.NODE_ENV==='production'){
+    //set a static folder
+    app.get('*', (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, 'frontend', 'build', 'index.html')
+    )
+  );
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running....');
+  });
+}
+
 app.listen(port,()=>{
     console.log(`server is runnig at http://localhost:${port}`)
 })
