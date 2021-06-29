@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const cors = require('cors');
+// const cors = require('cors');
 const path = require('path')
 const loginRouter = require('./Routes/apis/googleSigninRoute')
 const port = process.env.PORT||5000
@@ -18,7 +18,7 @@ mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology:true})
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
-app.use(cors())
+// app.use(cors())
 
 //routes
 app.use('/googlelogin',loginRouter)
