@@ -4,12 +4,12 @@ const jwt = require('jsonwebtoken')
 const loginRouter= express.Router();
 const {OAuth2Client}= require('google-auth-library');
 
-const client = new OAuth2Client('740792960585-i0mn80khmv0gliqcb82pqpbsg4d6seft.apps.googleusercontent.com')
+const client = new OAuth2Client('740792960585-ijlmjl16sjh77e9eccd8e8nk14j1gt35.apps.googleusercontent.com')
 //POST googlelogin
 loginRouter.post('/',async(req,res)=>{
 console.log(req.body.tokenId);
 const {tokenId}= req.body;
-const response=await client.verifyIdToken({idToken:tokenId,audience:'740792960585-i0mn80khmv0gliqcb82pqpbsg4d6seft.apps.googleusercontent.com'})
+const response=await client.verifyIdToken({idToken:tokenId,audience:'740792960585-ijlmjl16sjh77e9eccd8e8nk14j1gt35.apps.googleusercontent.com'})
 console.log(response.payload)
 const {email_verified,email,name,picture} =response.payload;
 const secret='secret'

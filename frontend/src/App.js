@@ -45,7 +45,7 @@ class App extends Component{
            <img className="h-20" src="http://www.google.com/images/icons/product/keep-512.png" alt="notes" />
            </div>
        <GoogleLogin
-    clientId="740792960585-i0mn80khmv0gliqcb82pqpbsg4d6seft.apps.googleusercontent.com"
+    clientId="740792960585-ijlmjl16sjh77e9eccd8e8nk14j1gt35.apps.googleusercontent.com"
     buttonText="Login with Google"
     onSuccess={this.responseSuccessGoogle}
     onFailure={this.responseErrorGoogle}
