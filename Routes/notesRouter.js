@@ -23,6 +23,10 @@ notesRouter.post('/',asyncHandler(async(req,res)=>{
     res.send(note);
 }))
 
+notesRouter.delete('/:id',asyncHandler(async(req,res)=>{
+      await Notes.findByIdAndDelete(req.params.id)
+      res.send(req.params.id)
+}))
 
 
 module.exports=notesRouter;

@@ -80,7 +80,7 @@ setShow(false)
    <div className="flex mt-16  flex-wrap items-start justify-start">
       {
        notes.map((note)=>(
-         <NoteCard key={note._id} title={note.title} text={note.text} color={note.color} />
+         <NoteCard key={note._id} title={note.title} text={note.text}  color={note.color} id={note._id} />
        )) 
       }
     </div>
