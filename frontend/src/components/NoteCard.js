@@ -2,19 +2,25 @@ import React,{useState} from 'react';
 import {BiDotsVertical} from 'react-icons/bi'
 import { useDispatch } from 'react-redux';
 import { deleteNote } from '../actions/note';
-const NoteCard = ({title,text,color,id}) => {
+import EditModal from './EditModal';
+const NoteCard = ({title,text,color,id,setColor}) => {
   const [show,setShow]=useState(false)
-
+const [showEdit,setShowEdit]=useState(false)
   const dispatch =useDispatch()
 
   const handleAddToStar=()=>{
     setShow(false)
+  }
+  const handleEdit=()=>{
+ setShow(false)
+ setShowEdit(true)
   }
   const handleDelete=()=>{
   dispatch(deleteNote(id))
   setShow(false)
   }
   return (
+    <>
       <div className='flex m-3 flex-col relative max-w-sm items-start rounded-md  justify-start py-2 w-72 px-6 border border-gray-300 ' style={{background:color}}>
           <h3 className='text-xl py-2 font-bold text-gray-800'>{title}</h3>
           <p>{text}</p>
@@ -25,9 +31,11 @@ const NoteCard = ({title,text,color,id}) => {
             <p className='p-2 text-gray-500 hover:bg-gray-200'>Add To Star</p>
             <p className='p-2 text-gray-500 hover:bg-gray-200'>Pin</p>
             <p onClick={handleDelete} className='p-2 text-gray-500 hover:bg-gray-200'>Delete</p>
-            <p  className='p-2 text-gray-500 hover:bg-gray-200'>Edit</p>
+            <p onClick={handleEdit}  className='p-2 text-gray-500 hover:bg-gray-200'>Edit</p>
           </div>
       </div>
+      <EditModal showEdit={showEdit} setShowEdit={setShowEdit} title={title} text={text} color={color} id={id} setColor={setColor}/>
+      </>
   );
 };
 

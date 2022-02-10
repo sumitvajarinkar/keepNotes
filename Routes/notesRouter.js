@@ -23,6 +23,20 @@ notesRouter.post('/',asyncHandler(async(req,res)=>{
     res.send(note);
 }))
 
+notesRouter.put('/:id',asyncHandler(async(req,res)=>{
+const note = await Notes.findById(req.params.id)
+if(note){
+    note.title=req.body.title
+    note.text=req.body.text
+    note.color=req.body.color
+    const upadtedNote = await note.save()
+    res.send(upadtedNote)
+}
+else{
+    res.status(404).send({message:'Note not found!..'})
+}
+}))
+
 notesRouter.delete('/:id',asyncHandler(async(req,res)=>{
       await Notes.findByIdAndDelete(req.params.id)
       res.send(req.params.id)

@@ -1,5 +1,5 @@
 import { note } from "../api"
-import {ADD_NOTE, ADD_NOTE_ERROR, DELETE_NOTE, DELETE_NOTE_ERROR, DELETE_NOTE_REQ, GET_NOTES, GET_NOTES_ERROR} from './types'
+import {ADD_NOTE, ADD_NOTE_ERROR, DELETE_NOTE, DELETE_NOTE_ERROR, DELETE_NOTE_REQ, GET_NOTES, GET_NOTES_ERROR, UPDATE_NOTE_REQ,UPDATE_NOTE, UPADTE_NOTE_ERROR} from './types'
 export const addNote=(title,text,color)=>async(dispatch,getState)=>{
     const user = getState().user.user.user
     // console.log(text,title,color,user)
@@ -33,4 +33,15 @@ export const deleteNote=id=>dispatch=>{
     } catch (error) {
         dispatch({type:DELETE_NOTE_ERROR,payload:error.response&&error.response.data.message?error.response.data.message:error.message})
     }
+}
+
+export const upadteNote=(id,title,text,color)=>async dispatch=>{
+    dispatch({type:UPDATE_NOTE_REQ,payload:{title,text,color}})
+try {
+    const {data}=await note.put(`/api/notes/${id}`,{title,text,color})
+    console.log(data)
+    dispatch({type:UPDATE_NOTE,payload:data})
+} catch (error) {
+    dispatch({type:UPADTE_NOTE_ERROR,payload:error.response&&error.response.data.message?error.response.data.message:error.message})
+}
 }
