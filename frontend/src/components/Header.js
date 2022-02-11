@@ -2,13 +2,15 @@ import React from 'react';
 import {AiOutlineSetting} from 'react-icons/ai'
 import {FiGrid,FiMenu} from 'react-icons/fi'
 import { useSelector } from 'react-redux';
-const Header = () => {
+const Header = ({showSidebar,setShowSidebar}) => {
 
     const user = useSelector(state=>state.user?.user?.user)
   return (
   <div className='flex items-center justify-between w-full p-3 bg-white shadow-md border-gray border-b-1 '>
   <div className="flex items-center justify-center">
+      <div onClick={()=>setShowSidebar(!showSidebar)} className="flex items-center justify-center cursor-pointer  py-3  rounded-full hover:bg-gray-200">
       <FiMenu className='text-gray-500 text-2xl mx-3 font-bold'/>
+      </div>
       <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="" />
       <h3 className='text-gray-500 font-semibold'>Keep</h3>
   </div>

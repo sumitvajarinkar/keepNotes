@@ -35,12 +35,13 @@ export const deleteNote=id=>dispatch=>{
     }
 }
 
-export const upadteNote=(id,title,text,color)=>async dispatch=>{
+export const upadteNote=(id,title,text,color,setShowEdit)=>async dispatch=>{
     dispatch({type:UPDATE_NOTE_REQ,payload:{title,text,color}})
 try {
     const {data}=await note.put(`/api/notes/${id}`,{title,text,color})
     console.log(data)
     dispatch({type:UPDATE_NOTE,payload:data})
+    setShowEdit(false)
 } catch (error) {
     dispatch({type:UPADTE_NOTE_ERROR,payload:error.response&&error.response.data.message?error.response.data.message:error.message})
 }

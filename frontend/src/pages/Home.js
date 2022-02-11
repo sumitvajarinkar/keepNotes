@@ -9,6 +9,7 @@ import NoteCard from '../components/NoteCard';
 const Home = () => {
   const [show,setShow]=useState(false)
   const [color,setColor]=useState("#fff")
+  const [showSidebar,setShowSidebar]=useState(false)
   const inputRef=useRef('')
   const textRef=useRef('')
 
@@ -28,10 +29,10 @@ setShow(false)
      setColor('#fff')
   }
   return( <>
-  <Header/>
+  <Header showSidebar={showSidebar} setShowSidebar={setShowSidebar}/>
   <div className="flex  width-full">
-    <Sidebar/>
-    <div className="flex flex-col w-4/5 px-4 py-16">
+    <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar}/>
+    <div className={`flex flex-col ${showSidebar?'w-4/5':'w-5/6'}  px-4 py-16 transition-all ease-in-out delay-150`}>
    <form onSubmit={handleSubmit} className=' relative w-full flex flex-col items-center justify-center' >
        <div className=" w-1/2 p-2 rounded-md  shadow-lg drop-shadow-lg p-3 flex flex-col" style={{background:color}}>
         <input ref={inputRef}  type="text" className="w-full h-full p-2 my-2 outline-none" name="title" placeholder='Tile' />

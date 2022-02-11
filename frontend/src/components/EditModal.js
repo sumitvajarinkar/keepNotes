@@ -12,12 +12,13 @@ const EditModal = ({showEdit,setShowEdit,title,text,color,id}) => {
     const dispatch=useDispatch()
     const handleSubmit=(e)=>{
         e.preventDefault()
-     dispatch(upadteNote(id,newTitle,newText,newColor))
-     setShowEdit(false)
+     dispatch(upadteNote(id,newTitle,newText,newColor,setShowEdit))
+     
+     setColor('#fff')
     }
   return (
-    <div onClick={()=>setShowEdit(false)} className={`w-screen z-50 fixed top-0 left-0 h-screen flex items-center justify-center bg-gray-200 ${showEdit?'visible':'invisible'}`}>
-    <div className=" w-1/3 bg-white shadow-md  rounded-sm" onClick={(e)=>e.stopPropagation()}>
+    <div onClick={()=>setShowEdit(false)} className={`w-screen z-50 fixed top-0 left-0 h-screen flex items-center justify-center  ${showEdit?'visible':'invisible'}`} style={{background:'rgba(0,0,0,0.345)'}} >
+    <div className=" opacity-100 w-1/3 bg-white shadow-md  rounded-sm" onClick={(e)=>e.stopPropagation()}>
     <form onSubmit={handleSubmit} className=' relative w-full flex flex-col items-center justify-center' >
        <div className=" w-full p-2 rounded-md  shadow-lg drop-shadow-lg p-3 flex flex-col" style={{background:newColor}}>
         <input  value={newTitle} onChange={(e)=>setTitle(e.target.value)} type="text" className="w-full h-full p-2 my-2 outline-none" name="title" placeholder='Tile' />
